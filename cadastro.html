@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="stylecadastro.css">
+
+    <title>Página de Registro</title>
+</head>
+<body>
+
+    <nav>
+        <div>
+            <img src="NovaLogo.png" />
+        </div>
+        <ul class="menu">
+            <li>
+                <a href="indexlogado.php">Home</a>
+            </li>
+            <li>
+				<a href="pedido2.php">Pedidos</a>
+			</li>
+			<li>
+				<a href="analisePedido.php">Análise de Pedidos</a>
+			</li>
+            <li>
+				<a href="relatorio.php">Relatório</a>
+			</li>
+            
+            <li>
+				<a href="cadastro.html">Cadastro Login</a>
+			</li>
+
+			<li>
+			    <a href="novoproduto.html">Cadastro Produto</a>
+			</li>
+
+
+			<li>
+				<a href="buscarid.php">Status do Pedido</a>
+			</li>
+        </ul>
+    </nav>
+    <div class="formulario">
+        <h1>Registre-se</h1>
+    </div>
+    <div class="formulario">
+    <form id="registroForm" action="cadastro.php" method="post">
+        <div>
+            <label for="username">Nome de Usuário:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div>
+            <br>
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="button">
+            <br>
+            <button type="submit">Registrar</button>
+        </div>
+    </form>
+</div>
+
+    <script>
+       document.getElementById("registroForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.isRegistered) {
+            alert(data.message);
+
+            if (data.redirect) {
+                setTimeout(function() {
+                    window.location.href = data.redirect;
+                }, 1000);
+            }
+        } else {
+            alert(data.message);
+        }
+    });
+});
+    </script>
+    
+    
+</body>
+</html>

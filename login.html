@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styleLogin.css">
+    <title>Login</title>
+</head>
+<body>
+    <div id="login">
+        <div class="card">
+            <div class="card-header">
+                <h2><a href="index.html">HOME</a></h2>
+                <h2>Login</h2>
+            </div>
+            <div class="card-content">  
+                
+                <div class="card-content-area">
+                    <form id="login-form" action="login.php" method="post">
+                        <input type="text" id="username" placeholder="Usuario "name="username" autocomplete="off" required>
+                    </div>
+                    <div class="card-content-area">
+                        <input type="password" id="password" placeholder="Senha" name="password" autocomplete="off" required>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <input type="submit" value="Login" class="submit">
+                    <a href="#" class="recuperar_senha">Esqueceu a senha?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const loginForm = document.getElementById("login-form");
+
+            loginForm.addEventListener("submit", function (event) {
+                event.preventDefault();
+                const formData = new FormData(loginForm);
+
+                fetch('login.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.isLoggedIn) {
+                        if (data.redirect) {
+                            window.location.href = data.redirect;
+                        }
+                    } else {
+                        alert("Usuário ou senha incorretos. Tente novamente!");
+                    }
+                })
+                .catch(error => {
+                    console.error("Erro ao verificar o estado de login: " + error);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Novo Produto</title>
+    
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Estilos para a classe .menu */
+        .menu {
+            list-style-type: none;
+            padding-top: 20%;
+            text-align: left;
+            font-size: larger;
+            line-height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div>
+            <img src="NovaLogo.png" alt="Logo">
+        </div>
+        <ul class="menu">
+            <!-- Seu menu aqui -->
+            <li>
+                <a href="indexlogado.php">Home</a>
+            </li>
+            <li>
+                <a href="pedido2.php">Pedidos</a>
+            </li>
+            <li>
+                <a href="analisePedido.php">Análise de Pedidos</a>
+            </li>
+            <li>
+                <a href="relatorio.php">Relatório</a>
+            </li>
+            <li>
+                <a href="cadastro.html">Cadastro Login</a>
+            </li>
+            <li>
+                <a href="novoproduto.html">Cadastro Produto</a>
+            </li>
+            <li>
+                <a href="buscarid.php">Status do Pedido</a>
+            </li>
+        </ul>
+    </nav>
+    
+    <div class="pedido">
+        <h1>Cadastrar Novo Produto</h1>
+    </div>
+
+    <div class="formulario">
+        <form method="post" action="novoproduto.php">
+            <label for="Produto">Nome do Produto:</label>
+            <input type="text" id="Produto" name="Produto" placeholder="Nome do Produto" required>
+            <br>
+            <br>
+            <button type="submit">Cadastrar Produto</button>
+        </form>
+    </div>
+</body>
+</html>
